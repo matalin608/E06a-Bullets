@@ -90,10 +90,11 @@ class Window(arcade.Window):
         for e in self.enemy_list:
             damage = arcade.check_for_collision_with_list(e, self.bullet_list)
             for d in damage:
+                e.hp = e.hp - d.damage
                 d.kill()
                 if e.hp <= 0:
                     self.score += KILL_SCORE
-                    e.kill()
+                    e.kill() 
                 else:
                     self.score += HIT_SCORE
             # check for collision
@@ -101,7 +102,6 @@ class Window(arcade.Window):
             # increase the score
             # e.kill() will remove the enemy sprite from the game
             # the pass statement is a placeholder. Remove line 81 when you add your code
-            pass
 
     def on_draw(self):
         arcade.start_render()
